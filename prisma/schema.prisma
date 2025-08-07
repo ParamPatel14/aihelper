@@ -20,12 +20,14 @@ model User {
   id            String    @id @default(uuid())
   email         String    @unique
   name          String?
-  password      String?   // Nullable for OAuth users
+  image         String?   // <-- ADD THIS LINE
+  password      String?
+  emailVerified DateTime? // <-- ADD THIS LINE TOO
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  accounts      Account[]
-  sessions      Session[]
+  accounts Account[]
+  sessions Session[]
 }
 
 model Account {
@@ -37,12 +39,12 @@ model Account {
   refresh_token      String?
   access_token       String?
   expires_at         Int?
-  tokent_ype         String?
+  token_type         String?
   scope              String?
   id_token           String?
   session_state      String?
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
