@@ -15,6 +15,12 @@ const nextConfig = {
         port: '',
         pathname: '/u/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'avatar.vercel.sh', // <-- ADD THIS BLOCK
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

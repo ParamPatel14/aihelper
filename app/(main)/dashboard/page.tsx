@@ -1,8 +1,9 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import Image from "next/image";
-import { authOptions } from "@/app/lib/auth";
+
 import SignOutButton from "@/components/SignOutButton";
+import { authOptions } from "@/lib/auth";
 
 
 const DashboardPage = async () => {
