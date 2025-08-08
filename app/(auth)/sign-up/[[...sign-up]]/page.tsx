@@ -144,7 +144,7 @@ const SignUpPage = () => {
         {/* OAuth Buttons */}
         <div className="space-y-4">
           <button
-            onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+            onClick={() => signIn("google", { callbackUrl: "/dashboard",prompt: "select_account" })}
             className="w-full inline-flex items-center justify-center py-2.5 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
           >
             <FcGoogle className="w-5 h-5 mr-2" />

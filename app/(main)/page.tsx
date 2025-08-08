@@ -1,32 +1,45 @@
-import { authOptions } from "@/lib/auth";
-import { getServerSession } from "next-auth";
 import Link from "next/link";
-
-
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-800">
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] bg-gray-50 text-center px-4">
+      <main className="max-w-2xl mx-auto">
+        <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl">
           Welcome to AI Helper
         </h1>
-        <p className="mt-4 text-lg text-gray-600">
-          Your intelligent assistant for everything.
+        <p className="mt-6 text-lg leading-8 text-gray-600">
+          Your all-in-one platform for intelligent assistance. Get started in seconds by creating an account or signing in.
         </p>
-        {session && (
-          <div className="mt-8">
+        <div className="mt-10 flex items-center justify-center gap-x-6">
+          {session ? (
             <Link
               href="/dashboard"
-              className="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700"
+              className="rounded-md bg-indigo-600 px-6 py-3 text-lg font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Go to Dashboard
+              Go to Dashboard &rarr;
             </Link>
-          </div>
-        )}
-      </div>
-    </main>
+          ) : (
+            <>
+              <Link
+                href="/sign-up"
+                className="rounded-md bg-indigo-600 px-6 py-3 text-lg font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Get Started
+              </Link>
+              <Link
+                href="/sign-in"
+                className="text-lg font-semibold leading-6 text-gray-900 hover:text-gray-700"
+              >
+                Sign In <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </>
+          )}
+        </div>
+      </main>
+    </div>
   );
 }
