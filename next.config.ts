@@ -1,5 +1,4 @@
-
-
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -17,13 +16,17 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'avatar.vercel.sh', // <-- ADD THIS BLOCK
+        hostname: 'avatar.vercel.sh',
         port: '',
         pathname: '/**',
       },
     ],
   },
+  experimental: {
+    esmExternals: 'loose', // allow ESM packages like @react-pdf/renderer
+  },
 };
 
 module.exports = nextConfig;
+
 

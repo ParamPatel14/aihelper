@@ -28,11 +28,10 @@ const SignInPage = () => {
       });
 
       if (!res?.error) {
-        // If sign-in is successful, redirect to the callback URL
+        
         router.push(callbackUrl);
-        router.refresh(); // Refresh the page to update session state
+        router.refresh(); 
       } else {
-        // If there's an error, display it
         setError("Invalid email or password. Please try again.");
       }
     } catch (err: any) {
