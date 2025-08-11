@@ -1,5 +1,8 @@
+/** @type {import('next').NextConfig} */
+import type { NextConfig } from 'next';
+import type { Configuration as WebpackConfig, ResolveOptions } from 'webpack';
 
-const nextConfig = {
+const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
@@ -22,8 +25,17 @@ const nextConfig = {
       },
     ],
   },
+  output: 'standalone',
+  webpack: (config: WebpackConfig) => {
+    if (config.resolve?.alias && !Array.isArray(config.resolve.alias)) {
+      config.resolve.alias['canvas'] = false;
+      config.resolve.alias['encoding'] = false;
+    }
+    return config;
+  },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
+
 
 

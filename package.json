@@ -28,7 +28,9 @@
     "react-dom": "19.1.0",
     "react-frame-component": "^5.2.7",
     "react-icons": "^5.5.0",
-    "react-redux": "^9.2.0"
+    "react-redux": "^9.2.0",
+    "validator": "^13.15.15",
+    "webpack": "^5.101.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -38,6 +40,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/validator": "^13.15.2",
     "eslint": "^9",
     "eslint-config-next": "15.4.5",
     "tailwindcss": "^4.1.11",

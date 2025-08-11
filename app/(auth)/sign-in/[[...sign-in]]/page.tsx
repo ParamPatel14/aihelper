@@ -1,6 +1,6 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { signIn, type SignInResponse } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
@@ -12,32 +12,34 @@ const SignInPage = () => {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
   
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError(null); // Clear previous errors
+    setError(null);
+
     try {
-      const res = await signIn("credentials", {
-        redirect: false, // We handle the redirect manually
+      const res: SignInResponse | undefined = await signIn("credentials", {
+        redirect: false,
         email,
         password,
         callbackUrl,
       });
 
       if (!res?.error) {
-        
         router.push(callbackUrl);
-        router.refresh(); 
+        router.refresh();
       } else {
         setError("Invalid email or password. Please try again.");
       }
-    } catch (err: any) {
-       setError("An unexpected error occurred during sign-in.");
+    } catch (err: unknown) {
+      console.error(err);
+      setError("An unexpected error occurred during sign-in.");
     }
   };
+
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 py-12">
